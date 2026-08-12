@@ -4,7 +4,6 @@ import { supabase } from './lib/supabase'
 import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
 import Phone from './pages/Phone'
-import Inbox from './pages/Inbox'
 import SetupVoiceAgent from './pages/SetupVoiceAgent'
 import Pricing from './pages/Pricing'
 import Sidebar from './components/Sidebar'
@@ -77,7 +76,6 @@ export default function App() {
           <Route path="/pricing" element={<ProtectedRoute requiresSetup={false}><Pricing /></ProtectedRoute>} />
           <Route path="/setup" element={<ProtectedRoute requiresSetup={false}><SetupVoiceAgent /></ProtectedRoute>} />
           <Route path="/phone" element={<ProtectedRoute><Phone /></ProtectedRoute>} />
-          <Route path="/inbox" element={<ProtectedRoute><Inbox /></ProtectedRoute>} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </BrowserRouter>
