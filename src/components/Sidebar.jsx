@@ -52,8 +52,7 @@ export default function Sidebar() {
       {/* Logo */}
       <div style={{ padding: '24px 20px 20px', borderBottom: '1px solid #1e1e2e' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <div style={{ width: 32, height: 32, background: '#D4A017', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700, color: '#0D0D12' }}>M</div>
-          <span style={{ fontSize: 16, fontWeight: 700, color: '#e8e8f0', letterSpacing: '-0.3px' }}>ManyHandz</span>
+          <span style={{ fontSize: 18, fontWeight: 800, color: '#fff', letterSpacing: '-0.5px' }}>Many<span style={{ color: '#D4A017' }}>Handz</span></span>
         </div>
       </div>
 

@@ -30,9 +30,8 @@ export default function Login() {
       <div style={{ width: '100%', maxWidth: 400 }}>
         {/* Logo */}
         <div style={{ textAlign: 'center', marginBottom: 40 }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 12, marginBottom: 8 }}>
-            <div style={{ width: 44, height: 44, background: '#D4A017', borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20, fontWeight: 800, color: '#0D0D12' }}>M</div>
-            <span style={{ fontSize: 22, fontWeight: 800, color: '#e8e8f0', letterSpacing: '-0.5px' }}>ManyHandz</span>
+          <div style={{ marginBottom: 8 }}>
+            <span style={{ fontSize: 26, fontWeight: 800, color: '#fff', letterSpacing: '-0.5px' }}>Many<span style={{ color: '#D4A017' }}>Handz</span></span>
           </div>
           <p style={{ color: '#666680', fontSize: 14, marginTop: 4 }}>Sign in to your dashboard</p>
         </div>
