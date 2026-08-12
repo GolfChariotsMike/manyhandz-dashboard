@@ -6,6 +6,8 @@ import Dashboard from './pages/Dashboard'
 import Phone from './pages/Phone'
 import SetupVoiceAgent from './pages/SetupVoiceAgent'
 import Pricing from './pages/Pricing'
+import InboxSetup from './pages/InboxSetup'
+import Inbox from './pages/Inbox'
 import Sidebar from './components/Sidebar'
 
 export const AppContext = createContext(null)
@@ -75,6 +77,8 @@ export default function App() {
           <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
           <Route path="/pricing" element={<ProtectedRoute requiresSetup={false}><Pricing /></ProtectedRoute>} />
           <Route path="/setup" element={<ProtectedRoute requiresSetup={false}><SetupVoiceAgent /></ProtectedRoute>} />
+          <Route path="/inbox/setup" element={<ProtectedRoute><InboxSetup /></ProtectedRoute>} />
+          <Route path="/inbox" element={<ProtectedRoute><Inbox /></ProtectedRoute>} />
           <Route path="/phone" element={<ProtectedRoute><Phone /></ProtectedRoute>} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

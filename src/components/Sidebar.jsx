@@ -16,13 +16,19 @@ const PhoneIcon = () => (
   </svg>
 )
 
+const MailIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+  </svg>
+)
+
 const LogoutIcon = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
   </svg>
 )
 
-const navItems = [
+const baseNavItems = [
   { path: '/', label: 'Dashboard', icon: GridIcon, exact: true },
   { path: '/phone', label: 'Phone Agent', icon: PhoneIcon },
 ]
@@ -36,7 +42,11 @@ export default function Sidebar() {
     navigate('/login')
   }
 
-  const plan = customer?.plan || 'Voice'
+  const plan = customer?.plan || 'voice'
+  const hasInbox = plan === 'voice_inbox'
+  const navItems = hasInbox
+    ? [...baseNavItems, { path: '/inbox', label: 'Inbox', icon: MailIcon }]
+    : baseNavItems
 
   return (
     <aside style={{ width: 220, background: '#13131a', borderRight: '1px solid #1e1e2e', display: 'flex', flexDirection: 'column', flexShrink: 0 }}>
