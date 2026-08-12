@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { AppContext } from '../App'
 import { supabase } from '../lib/supabase'
 import StatCard from '../components/StatCard'
+import ReferralWidget from '../components/ReferralWidget'
 
 function getGreeting() {
   const h = new Date().getHours()
@@ -153,6 +154,10 @@ export default function Dashboard() {
       </div>
 
       {/* Recent calls */}
+      <div style={{ marginBottom: 28 }}>
+        <ReferralWidget customer={customer} />
+      </div>
+
       <div style={{ background: '#13131a', border: '1px solid #1e1e2e', borderRadius: 12, padding: '20px 24px' }}>
         <div style={{ fontSize: 15, fontWeight: 600, color: '#e8e8f0', marginBottom: 16 }}>Recent Calls</div>
         {callLogs.length === 0 ? (
