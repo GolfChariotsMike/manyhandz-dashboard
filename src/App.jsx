@@ -5,6 +5,7 @@ import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
 import Phone from './pages/Phone'
 import Inbox from './pages/Inbox'
+import SetupVoiceAgent from './pages/SetupVoiceAgent'
 import Sidebar from './components/Sidebar'
 
 export const AppContext = createContext(null)
@@ -20,14 +21,16 @@ function Layout({ children }) {
   )
 }
 
-function ProtectedRoute({ children }) {
-  const { session, loading } = useContext(AppContext)
+function ProtectedRoute({ children, requiresSetup = true }) {
+  const { session, customer, loading } = useContext(AppContext)
   if (loading) return (
     <div className="flex items-center justify-center h-screen" style={{ background: '#0D0D12' }}>
-      <div className="text-muted text-sm">Loading...</div>
+      <div style={{ color: '#666680', fontSize: 14 }}>Loading...</div>
     </div>
   )
   if (!session) return <Navigate to="/login" replace />
+  // If customer has no phone number yet, send to setup (unless already on setup)
+  if (requiresSetup && customer && !customer.twilio_number) return <Navigate to="/setup" replace />
   return <Layout>{children}</Layout>
 }
 
@@ -68,6 +71,7 @@ export default function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+          <Route path="/setup" element={<ProtectedRoute requiresSetup={false}><SetupVoiceAgent /></ProtectedRoute>} />
           <Route path="/phone" element={<ProtectedRoute><Phone /></ProtectedRoute>} />
           <Route path="/inbox" element={<ProtectedRoute><Inbox /></ProtectedRoute>} />
           <Route path="*" element={<Navigate to="/" replace />} />
