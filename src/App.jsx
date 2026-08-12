@@ -44,6 +44,10 @@ export default function App() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    // Persist affiliate ref code from URL into localStorage
+    const urlRef = new URLSearchParams(window.location.search).get('ref')
+    if (urlRef) localStorage.setItem('mh_ref', urlRef)
+
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session)
       if (session) loadCustomer(session.user.email)

@@ -25,14 +25,22 @@ export default function Pricing() {
         Stripe = window.Stripe
       }
       const stripe = Stripe(MH_PK)
-      const { error } = await stripe.redirectToCheckout({
+
+      // Check for affiliate/referral discount code in localStorage or URL
+      const refCode = localStorage.getItem('mh_ref') || new URLSearchParams(window.location.search).get('ref')
+      const discountCode = refCode ? refCode.toUpperCase() : undefined
+
+      const checkoutParams = {
         lineItems: [{ price: PRICES[plan], quantity: 1 }],
         mode: 'subscription',
         successUrl: `${window.location.origin}/setup?payment=success`,
         cancelUrl: `${window.location.origin}/pricing`,
         clientReferenceId: customer?.id || '',
         customerEmail: customer?.owner_email || '',
-      })
+      }
+      if (discountCode) checkoutParams.discountIds = [{ coupon: discountCode }]
+
+      const { error } = await stripe.redirectToCheckout(checkoutParams)
       if (error) throw new Error(error.message)
     } catch(e) {
       alert('Something went wrong: ' + e.message)
